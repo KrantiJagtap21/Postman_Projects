@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "f9771fa6-2f61-41c0-83a2-cce390df7d3a",
+		"name": "Post_Data_driven",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27062608"
+	},
+	"item": [
+		{
+			"name": "Data_Driven_JSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"validate states code is 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//request\r",
+							"var requestBody=pm.request.body.raw;\r",
+							"requestBody=JSON.parse(requestBody);\r",
+							"var req_name=requestBody.name;\r",
+							"var req_job=requestBody.job;\r",
+							"\r",
+							"//date\r",
+							"var actualdate=new Date().toJSON().slice(0,13);\r",
+							"\r",
+							"//responsebody\r",
+							"var responseBody=pm.response.json();\r",
+							"var res_name=responseBody.name;\r",
+							"var res_job=responseBody.job;\r",
+							"var res_createdAt=responseBody.createdAt;\r",
+							"res_createdAt=responseBody.createdAt.slice(0,13);\r",
+							"\r",
+							"\r",
+							"// validate\r",
+							"pm.test(\"validate response body parameter name\", function() {\r",
+							"    pm.expect(res_name).to.eql(req_name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"validate responsebody parameter job\", function() {\r",
+							"    pm.expect(res_job).to.eql(req_job);\r",
+							"});\r",
+							" pm.test(\"validate response body parameter date\", function(){\r",
+							"     pm.expect(res_createdAt).to.eql(actualdate);\r",
+							" });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"{{Name}}\",\r\n    \"Job\": \"{{Job}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Post}}",
+					"host": [
+						"{{Post}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Data_Driven_csv",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"validate states code is 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//request\r",
+							"var requestBody=pm.request.body.raw;\r",
+							"requestBody=JSON.parse(requestBody);\r",
+							"var req_name=requestBody.name;\r",
+							"var req_job=requestBody.job;\r",
+							"\r",
+							"//date\r",
+							"var actualdate=new Date().toJSON().slice(0,13);\r",
+							"\r",
+							"//responsebody\r",
+							"var responseBody=pm.response.json();\r",
+							"var res_name=responseBody.name;\r",
+							"var res_job=responseBody.job;\r",
+							"var res_createdAt=responseBody.createdAt;\r",
+							"res_createdAt=responseBody.createdAt.slice(0,13);\r",
+							"\r",
+							"\r",
+							"// validate\r",
+							"pm.test(\"validate response body parameter name\", function() {\r",
+							"    pm.expect(res_name).to.eql(req_name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"validate responsebody parameter job\", function() {\r",
+							"    pm.expect(res_job).to.eql(req_job);\r",
+							"});\r",
+							" pm.test(\"validate response body parameter date\", function(){\r",
+							"     pm.expect(res_createdAt).to.eql(actualdate);\r",
+							" });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"{{Name}}\",\r\n    \"Job\": \"{{Job}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Post}}",
+					"host": [
+						"{{Post}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Name",
+			"value": ""
+		},
+		{
+			"key": "Job",
+			"value": ""
+		}
+	]
+}

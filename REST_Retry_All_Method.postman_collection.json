@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "34708b3d-6c52-442a-924d-f09d51bd1b4f",
+		"name": "REST_Retry_All_Method",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27062608"
+	},
+	"item": [
+		{
+			"name": "Patch TC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var status=pm.response.status;\r",
+							"var countstart=pm.collectionVariables.get(\"start\");\r",
+							"var countend=pm.collectionVariables.get(\"end\");\r",
+							"if(status==\"OK\")\r",
+							"{\r",
+							"    pm.test(\"status code is 200\",function() {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    var requestBody=pm.request.body.raw;\r",
+							"    requestBody=JSON.parse(requestBody);\r",
+							"    var req_name=requestBody.name;\r",
+							"    var req_job=requestBody.job;\r",
+							"    var req_address=requestBody.address;\r",
+							"    var currentdate= new Date().toJSON().slice(0,13);\r",
+							"    var responseBody = pm.response.json(); \r",
+							"    var res_name = responseBody.name;\r",
+							"    var res_job= responseBody.job;\r",
+							"    var res_address= responseBody.address\r",
+							"    var res_updatedAt=responseBody.updatedAt;\r",
+							"    res_updatedAt=res_updatedAt.slice(0,13);\r",
+							"    pm.test(\"Validate Response Body Parameter Name\", function() {pm.expect(res_name).to.eql(req_name);});\r",
+							"    pm.test(\"Validate Response Body Parameter Job\", function() {\r",
+							"        pm.expect(res_job).to.eql(req_job);});\r",
+							"    \r",
+							"    pm.test(\"Validate Response Body Parameter Address\", function() {pm.expect(res_address).to.eql(req_address);});\r",
+							"        pm.test(\"Validate Response Body Parameter Date\", function() {pm.expect(res_updatedAt).to.eql(currentdate);\r",
+							"        });\r",
+							"}\r",
+							"else\r",
+							"{\r",
+							"    if(countstart<countend)\r",
+							"    { pm.collectionVariables.set(\"start\",eval(countstart+1))\r",
+							"    console.log(pm.collectionVariables.get(\"start\"))\r",
+							"    postman.setNextRequest(\"Patch TC\");\r",
+							"    }\r",
+							"    else\r",
+							"    {\r",
+							"        postman.setNextRequest(null)\r",
+							"        pm.collectionVariables.set(\"start\",0);\r",
+							"        pm.test(\"status code is 200\", function() {\r",
+							"        pm.responce.to.have.status(200);\r",
+							"        });\r",
+							"\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name=pm.variables.replaceIn('{{$randomFullName}}');\r",
+							"pm.collectionVariables.set(\"coll_Name\",name);\r",
+							"\r",
+							"var job=pm.variables.replaceIn('{{$randomJobTitle}}');\r",
+							"pm.collectionVariables.set(\"coll_Job\",job);\r",
+							"\r",
+							"var address=pm.variables.replaceIn('{{$randomCity}}');\r",
+							"pm.collectionVariables.set(\"coll_Address\",address);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"{{coll_Name}}\",\r\n\"job\": \"{{coll_Job}}\",\r\n\"address\": \"{{coll_Address}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Patch}}",
+					"host": [
+						"{{Patch}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST TC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var status=pm.response.status;\r",
+							"var countstart=pm.collectionVariables.get(\"start\");\r",
+							"var countend=pm.collectionVariables.get(\"end\");\r",
+							"if(status==\"Created\")\r",
+							"{\r",
+							"    pm.test(\"status code is 201\",function() {\r",
+							"        pm.response.to.have.status(201);\r",
+							"    });\r",
+							"    var requestBody=pm.request.body.raw;\r",
+							"    requestBody=JSON.parse(requestBody);\r",
+							"    var req_name=requestBody.name;\r",
+							"    var req_job=requestBody.job;\r",
+							"    var actualdate= new Date().toJSON().slice(0,13);\r",
+							"    var responseBody = pm.response.json(); \r",
+							"    var res_name = responseBody.name;\r",
+							"    var res_job= responseBody.job;\r",
+							"    var res_id= responseBody.id;\r",
+							"    var res_createdAt=responseBody.createdAt;res_createdAt=res_createdAt.slice(0,13);\r",
+							"    pm.test(\"Validate Response Body Parameter Name\", function() {\r",
+							"    pm.expect(res_name).to.eql(req_name);\r",
+							"    });\r",
+							"    pm.test(\"Validate Response Body Parameter Job\", function() {\r",
+							"    pm.expect(res_job).to.eql(req_job);\r",
+							"    });\r",
+							"    pm.test(\"Validate Response Body Parameter ID\", function() {\r",
+							"    pm.expect(res_id).to.not.null;\r",
+							"    });\r",
+							"    pm.test(\"Validate Response Body Parameter Date\", function() {\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"    });\r",
+							"}\r",
+							"else\r",
+							"{\r",
+							"    if(countstart<countend)\r",
+							"    { pm.collectionVariables.set(\"start\",eval(countstart+1))\r",
+							"    console.log(pm.collectionVariables.get(\"start\"))\r",
+							"    postman.setNextRequest(\"POST TC\");\r",
+							"    }\r",
+							"    else\r",
+							"    {\r",
+							"        postman.setNextRequest(null)\r",
+							"        pm.collectionVariables.set(\"start\",0);\r",
+							"        pm.test(\"status code is 201\", function() {\r",
+							"        pm.responce.to.have.status(201);\r",
+							"        });\r",
+							"\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name=pm.variables.replaceIn('{{$randomFullName}}');\r",
+							"pm.collectionVariables.set(\"coll_Name\",name);\r",
+							"\r",
+							"var job=pm.variables.replaceIn('{{$randomJobTitle}}');\r",
+							"pm.collectionVariables.set(\"coll_Job\",job);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"{{coll_Name}}\",\r\n\"job\": \"{{coll_Job}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Post}}",
+					"host": [
+						"{{Post}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT TC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var status=pm.response.status;\r",
+							"var countstart=pm.collectionVariables.get(\"start\");\r",
+							"var countend=pm.collectionVariables.get(\"end\");\r",
+							"if(status==\"OK\")\r",
+							"{\r",
+							"    pm.test(\"status code is 200\",function() {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    var requestBody=pm.request.body.raw;\r",
+							"    requestBody=JSON.parse(requestBody);\r",
+							"    var req_name=requestBody.name;\r",
+							"    var req_job=requestBody.job;\r",
+							"    var actualdate=new Date().toJSON().slice(0,13);\r",
+							"    var responseBody=pm.response.json();\r",
+							"    var res_name=responseBody.name;\r",
+							"    var res_job=responseBody.job;\r",
+							"    var res_updatedAt=responseBody.updatedAt;res_updatedAt=responseBody.updatedAt.slice(0,13);\r",
+							"    pm.test(\"validate response name\", function() {\r",
+							"    pm.expect(res_name).to.eql(req_name);\r",
+							"    });\r",
+							"    pm.test(\"validate response Job\", function() {\r",
+							"    pm.expect(res_job).to.eql(req_job);\r",
+							"    });\r",
+							"    pm.test(\"Validate response date\", function() {\r",
+							"    pm.expect(res_updatedAt).to.eql(actualdate);\r",
+							"    });\r",
+							"}\r",
+							"else\r",
+							"{\r",
+							"    if(countstart<countend)\r",
+							"    { pm.collectionVariables.set(\"start\",eval(countstart+1))\r",
+							"    console.log(pm.collectionVariables.get(\"start\"))\r",
+							"    postman.setNextRequest(\"PUT TC\");\r",
+							"    }\r",
+							"    else\r",
+							"    {\r",
+							"        postman.setNextRequest(null)\r",
+							"        pm.collectionVariables.set(\"start\",0);\r",
+							"        pm.test(\"status code is 200\", function() {\r",
+							"        pm.responce.to.have.status(200);\r",
+							"        });\r",
+							"\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name=pm.variables.replaceIn('{{$randomFullName}}');\r",
+							"pm.collectionVariables.set(\"coll_Name\",name);\r",
+							"\r",
+							"var job=pm.variables.replaceIn('{{$randomJobTitle}}');\r",
+							"pm.collectionVariables.set(\"coll_Job\",job);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"{{coll_Name}}\",\r\n\"job\": \"{{coll_Job}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Put}}",
+					"host": [
+						"{{Put}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET TC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1&id=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE TC",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1&id=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "coll_Address",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "coll_Name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "coll_Job",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "start",
+			"value": "0",
+			"type": "string"
+		},
+		{
+			"key": "end",
+			"value": "5",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,1094 @@
+{
+	"info": {
+		"_postman_id": "99dc6e18-cc99-44e3-85c4-0ad2c1a7fe61",
+		"name": "SOAP_NumberConversion",
+		"description": "The Number Conversion Web Service, implemented with Visual DataFlex, provides functions that convert numbers into words or dollar amounts.\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27062608"
+	},
+	"item": [
+		{
+			"name": "NumberConversionSoap",
+			"item": [
+				{
+					"name": "NumberToWords_TC1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Validate Responce status code:\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"validate Response Body\",function () {\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToWordsResult>eight </m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>8</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"validate Response Body\",function () {\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToWordsResult>one thousand</m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>1000</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "NumberToWords_TC2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>1000</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+									"host": [
+										"{{NumberConversionSoapBaseUrl}}"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "private, max-age=0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Server",
+									"value": "Server"
+								},
+								{
+									"key": "Web-Service",
+									"value": "DataFlex 19.1"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Apr 2023 03:13:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "312"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n    <soap:Body>\n        <m:NumberToWordsResponse xmlns:m=\"http://www.dataaccess.com/webservicesserver/\">\n            <m:NumberToWordsResult>one thousand</m:NumberToWordsResult>\n        </m:NumberToWordsResponse>\n    </soap:Body>\n</soap:Envelope>"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\" , function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"validate response body\", function (){\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToWordsResult>number too large</m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>-1</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"valid response body\", function () {\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToWordsResult>number too large</m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>-10</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"valid response body\", function () {\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToWordsResult>four million nine hundred and twelve thousand five hundred and sixty eight </m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>@</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"valid response body\", function () {\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToWordsResult>four million nine hundred and twelve thousand six hundred and thirty eight </m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>1/2</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"valid response body\", function () {\r",
+									"    pm.expect(responseBody).contains(\" <m:NumberToWordsResult>twelve </m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>12.34</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToWords_TC8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"valid response body\", function () {\r",
+									"    pm.expect(responseBody).contains(\" <m:NumberToWordsResult>four million nine hundred and twelve thousand seven hundred and five </m:NumberToWordsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>bcd</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the word corresponding to the positive number passed as parameter. Limited to quadrillions."
+					},
+					"response": [
+						{
+							"name": "NumberToWords response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>100</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWordsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToWordsResult>string</NumberToWordsResult>\n    </NumberToWordsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToDollars_TC1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code is 200\" , function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"validate response body\", function (){\r",
+									"    pm.expect(responseBody).contains(\"<m:NumberToDollarsResult>thirty eight dollars</m:NumberToDollarsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <dNum>38</dNum>\n    </NumberToDollars>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the non-zero dollar amount of the passed number."
+					},
+					"response": [
+						{
+							"name": "NumberToDollars response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <dNum>38</dNum>\n    </NumberToDollars>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollarsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToDollarsResult>string</NumberToDollarsResult>\n    </NumberToDollarsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "NumberToDollars_TC2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var responseBody = pm.response.text();\r",
+									"console.log(responseBody);\r",
+									"\r",
+									"pm.test(\"valid response body\", function () {\r",
+									"    pm.expect(responseBody).contains(\" <m:NumberToDollarsResult>thirty eight dollars</m:NumberToDollarsResult>\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <dNum>38</dNum>\n    </NumberToDollars>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{NumberConversionSoapBaseUrl}}/webservicesserver/NumberConversion.wso",
+							"host": [
+								"{{NumberConversionSoapBaseUrl}}"
+							],
+							"path": [
+								"webservicesserver",
+								"NumberConversion.wso"
+							]
+						},
+						"description": "Returns the non-zero dollar amount of the passed number."
+					},
+					"response": [
+						{
+							"name": "NumberToDollars response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollars xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <dNum>38</dNum>\n    </NumberToDollars>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso",
+									"protocol": "https",
+									"host": [
+										"www",
+										"dataaccess",
+										"com"
+									],
+									"path": [
+										"webservicesserver",
+										"NumberConversion.wso"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToDollarsResponse xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <NumberToDollarsResult>string</NumberToDollarsResult>\n    </NumberToDollarsResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				}
+			],
+			"description": "The Number Conversion Web Service, implemented with Visual DataFlex, provides functions that convert numbers into words or dollar amounts."
+		}
+	],
+	"variable": [
+		{
+			"key": "NumberConversionSoapBaseUrl",
+			"value": "https://www.dataaccess.com",
+			"type": "any"
+		},
+		{
+			"key": "NumberConversionSoap12BaseUrl",
+			"value": "https://www.dataaccess.com",
+			"type": "any"
+		}
+	]
+}
